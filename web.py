@@ -1,6 +1,6 @@
 from flask import Flask, flash, redirect, render_template, request, session
 import os
-from bson.json_util import dumps
+#from bson.json_util import dumps
 import json
 from werkzeug import serving
 import ssl
@@ -19,4 +19,4 @@ def home():
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
-    serving.run_simple("0.0.0.0", 8888, app, ssl_context=context, threaded=True)
+    serving.run_simple("127.0.0.1", 3456, app, ssl_context=context, threaded=True)
