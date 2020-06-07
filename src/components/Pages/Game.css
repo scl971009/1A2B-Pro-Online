@@ -1,0 +1,86 @@
+html, body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.container{
+  min-height: 100%;
+  position: relative;
+}
+.body{
+  padding-bottom: 40px;
+}
+
+body{
+  color: #fff;
+  background-color: #222;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 20px;
+}
+.board-container{
+  background-color: #333;
+  display: inline-block;
+  padding: 15px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  text-align: left;
+}
+.board-container, .well{
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 16px 3px;
+}
+.board{
+  color: #349190;
+}
+.board tr td:first-child{
+  width: 1.6em;
+  text-align: center;
+}
+@keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+button[name="clear"]{
+  display: block;
+  letter-spacing: 1px;
+}
+.well{
+  max-width: 302px;
+  background-color: #333;
+  border: none;
+  border-radius: 8px;
+  padding: 15px;
+}
+.well .btn{
+  letter-spacing: 2px;
+}
+.btn{
+  line-height: 1.5;
+  padding-top: 8px;
+}
+.btn-xs{
+  line-height: 1.2;
+  padding-top: 3px;
+}
+.btn-primary{
+  background-color: #349190;
+  border-color: #215a5a;
+}
+.btn-primary:hover{
+  background-color: #297372;
+  border-color: #1f4646;
+}
+.btn-primary:active{
+  background-color: #236160;
+  border-color: #163a3a;
+}
+.btn-primary:active:hover{
+  background-color: #1b4a49;
+  border-color: #122f2f;
+}
+.btn-default[disabled]{
+  color: #999;
+}
