@@ -4,11 +4,16 @@ import { Provider } from 'react-redux';
 import './index.css';
 import store from './store';
 import App from './components/App';
+import { BrowserRouter, Switch } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+	<BrowserRouter>
+	    <Switch>
+	      <App />
+	    </Switch>
+  	</BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
