@@ -1,8 +1,6 @@
 # 1A2B-Pro-Online
 
-```python3 web.py```
-
-打開瀏覽器, https://127.0.0.1:8888
+You need to open two terminals to execute this project.
 
 ## Frontend
 
@@ -12,3 +10,6 @@ Then run
 ``` npm install```  
 ``` npm start```
 
+## Backend
+
+``` sh backend.sh ```
