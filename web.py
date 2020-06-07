@@ -63,4 +63,4 @@ def determine_rival(account, rival):
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
-    serving.run_simple("127.0.0.1", 5000, app, ssl_context=context, threaded=True)
+    serving.run_simple("140.112.30.35", 8888, app, ssl_context=context, threaded=True)
