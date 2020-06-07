@@ -12,4 +12,4 @@ Then run
 
 ## Backend
 
-``` sh backend.sh ```
+``` python3 web.py ```

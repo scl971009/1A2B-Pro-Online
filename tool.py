@@ -10,14 +10,9 @@ import re
 import json
 import requests
 
-MYSQL_QAE_URI = os.environ["MYSQL_QAE_URI"]
-MYSQL_QAE_USER = os.environ["MYSQL_QAE_USER"]
-MYSQL_QAE_PASS = os.environ["MYSQL_QAE_PASS"]
-MYSQL_QAE_DB = os.environ["MYSQL_QAE_DB"]
-
 class control_db(object):
 	def __init__(self):
-		self.mysql_qae = pymysql.connect(host=MYSQL_QAE_URI, user=MYSQL_QAE_USER, password=MYSQL_QAE_PASS, db=MYSQL_QAE_DB,  cursorclass=pymysql.cursors.DictCursor)
+		self.mysql_qae = pymysql.connect(host="cnl-1a2b-pro-online.clzqdkl7yu2l.us-east-1.rds.amazonaws.com", user="Group7", password="Group7root", db="user",  cursorclass=pymysql.cursors.DictCursor)
 		self.mysql_qae_cursor = self.mysql_qae.cursor()
 
 	def __db(func):
