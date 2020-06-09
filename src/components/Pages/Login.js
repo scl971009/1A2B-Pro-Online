@@ -9,8 +9,8 @@ class Login extends Component {
     }
 
     handleSuccessfulAuth(data){
-        //Redirection
         this.props.handleLogin(data);
+        //Redirection
         this.props.history.push("/")
     
     }

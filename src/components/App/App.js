@@ -7,9 +7,7 @@ import  Home   from '../Pages/Home.js';
 import  Login   from '../Pages/Login.js';
 
 import './App.css';
-
-
-
+ 
 class App extends Component {
   constructor(){
     super();
@@ -20,6 +18,9 @@ class App extends Component {
     };
 
     this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  checkLoginStatus(){
   }
 
   handleLogin(data) {
