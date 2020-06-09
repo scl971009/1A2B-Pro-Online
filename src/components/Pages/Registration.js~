@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-
+import axios from 'axios';
 export default class Registration extends Component {
     constructor(props){
         super(props);
@@ -8,6 +8,7 @@ export default class Registration extends Component {
             email: "",
             password: "",
             password_confirmation: "",
+            name: "",
             registrationErrors: ""
         }
 
@@ -21,28 +22,30 @@ export default class Registration extends Component {
 
     }
     handleSubmit(event){
-        const { email, password, password_confirmation} = this.state;
+        const { email, password, password_confirmation, name} = this.state;
 
         if (password !== password_confirmation){
             alert("Fuck you");
         }
         else{
-            //not sure if it is correct or not.
-            fetch('/sign_up')
-            .then(res => res.json())
-            .then(data => {
-                //success
-                if(data.result === 0){
-                    console.log("creating sucessfully");
+            axios.get('/sign_up/'.concat(email, '/', password, '/', name),
+            { withCredentials: true })
+            .then(response => {
+                //successful
+                if(response.data.result === 0){
+                    this.props.handleSuccessfulAuth(response.data)
                 }
                 //error
-                else if (data.result === -1){
+                else if (response.data.result === -1){
                     console.log("fuck you error");
                 }
                 //duplicate
-                else{
+                else if (response.data.result === 1){
                     console.log("fuck duplicate");
                 }
+            })
+            .catch(error => {
+                console.log("registration error", error);
             });
         }
         event.preventDefault();
@@ -77,6 +80,14 @@ export default class Registration extends Component {
                     required 
                 />
 
+                <input 
+                    type="name" 
+                    name="name" 
+                    placeholder="name" 
+                    value={this.state.name} 
+                    onChange={this.handleChange} 
+                    required 
+                />
                 <button type="submit">Register</button>
 
             </form>
