@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
-class Login extends Component {
-  
+import React, {Component} from 'react';
+import Registration from './Registration';
 
-  render() {
-    return (
-      <div className="container">
-        <h1 className="py-3">Login Page</h1>
-      </div>
-    );
-  }
+class Login extends Component {
+    render() {
+        return (
+            <div className="container">
+                <h1 className="py-3">Login Page</h1>
+                <Registration />
+            </div>
+
+        )
+    }
+
 }
 
 export default Login;
