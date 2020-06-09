@@ -10,14 +10,35 @@ import './App.css';
 
 
 class App extends Component {
-  
+  constructor(){
+    super();
+
+    this.state={
+      loggedInStatus: "NOT_LOGGED_IN",
+      user: {
+
+      }
+    }
+  }
 
   render() {
     return (
       <div className="container">
         <Navbar />
-        <Route path="/" exact component={Home} />
-        <Route path="/login" component={Login} />
+        <Route 
+          path="/" 
+          exact 
+          render={props => (
+            <Home { ... props} loggedInStatus={this.state.loggedInStatus} />
+          )}
+        />
+        <Route 
+          path="/login"
+          exact
+          render={props =>(
+            <Login { ... props} loggedInStatus={this.state.loggedInStatus} />
+          )}
+        />
         <Route path="/game" component={Game} />
       </div>
     );
