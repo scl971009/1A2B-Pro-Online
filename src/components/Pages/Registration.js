@@ -27,7 +27,23 @@ export default class Registration extends Component {
             alert("Fuck you");
         }
         else{
-
+            //not sure if it is correct or not.
+            fetch('/sign_up')
+            .then(res => res.json())
+            .then(data => {
+                //success
+                if(data.result === 0){
+                    console.log("creating sucessfully");
+                }
+                //error
+                else if (data.result === -1){
+                    console.log("fuck you error");
+                }
+                //duplicate
+                else{
+                    console.log("fuck duplicate");
+                }
+            });
         }
         event.preventDefault();
     }
