@@ -1,5 +1,9 @@
 import React, {Component} from "react";
+<<<<<<< HEAD
 import axios from 'axios';
+=======
+
+>>>>>>> e563de9... Update registration
 export default class Registration extends Component {
     constructor(props){
         super(props);
@@ -8,7 +12,10 @@ export default class Registration extends Component {
             email: "",
             password: "",
             password_confirmation: "",
+<<<<<<< HEAD
             name: "",
+=======
+>>>>>>> e563de9... Update registration
             registrationErrors: ""
         }
 
@@ -22,12 +29,17 @@ export default class Registration extends Component {
 
     }
     handleSubmit(event){
+<<<<<<< HEAD
         const { email, password, password_confirmation, name} = this.state;
+=======
+        const { email, password, password_confirmation} = this.state;
+>>>>>>> e563de9... Update registration
 
         if (password !== password_confirmation){
             alert("Fuck you");
         }
         else{
+<<<<<<< HEAD
 <<<<<<< HEAD
             axios.get('/sign_up/'.concat(email, '/', password, '/', name),
             { withCredentials: true })
@@ -48,6 +60,8 @@ export default class Registration extends Component {
             .catch(error => {
                 console.log("registration error", error);
 =======
+=======
+>>>>>>> e563de9... Update registration
             //not sure if it is correct or not.
             fetch('/sign_up')
             .then(res => res.json())
@@ -64,7 +78,10 @@ export default class Registration extends Component {
                 else{
                     console.log("fuck duplicate");
                 }
+<<<<<<< HEAD
 >>>>>>> 1e5c546... connect to backend trial #1
+=======
+>>>>>>> e563de9... Update registration
             });
         }
         event.preventDefault();
@@ -99,6 +116,7 @@ export default class Registration extends Component {
                     required 
                 />
 
+<<<<<<< HEAD
                 <input 
                     type="name" 
                     name="name" 
@@ -107,6 +125,8 @@ export default class Registration extends Component {
                     onChange={this.handleChange} 
                     required 
                 />
+=======
+>>>>>>> e563de9... Update registration
                 <button type="submit">Register</button>
 
             </form>
