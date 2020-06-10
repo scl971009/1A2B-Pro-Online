@@ -6,7 +6,6 @@ import  Home   from '../Pages/Home.js';
 import  Login   from '../Pages/Login.js';
 import  Profile   from '../Pages/Profile.js';
 
-
 import './App.css';
 
 
@@ -22,7 +21,6 @@ class App extends Component {
         <Route path="/login" component={Login} />
         <Route path="/game" component={Game} />
         <Route path="/profile" component={Profile} />
-
       </div>
     );
   }
