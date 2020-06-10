@@ -17,7 +17,7 @@ class control_db(object):
 		if account == "" or password == "" or name == "":
 			return 2
 		try:
-			sql = "INSERT INTO `user`.`profile` (`account`, `password`, `name`, `score`, `money`) VALUES ('" + account + "', '" + password + "', '" + name + "', '0', '10');"
+			sql = "INSERT INTO `user`.`profile` (`account`, `password`, `name`, `score`, `win`, `lose`, `money`) VALUES ('" + account + "', '" + password + "', '" + name + "', '0', '0', '0', '10');"
 			self.mysql_qae_cursor.execute(sql)
 			mysql_result = self.mysql_qae_cursor.fetchall()
 			self.mysql_qae.commit()

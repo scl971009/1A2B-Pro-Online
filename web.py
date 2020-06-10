@@ -10,6 +10,10 @@ context.load_cert_chain("server.crt", "server.key")
 
 app = Flask(__name__)
 
+@app.route('/')
+def show_user_api():
+	return render_template('user_api.html')
+
 @app.route('/sign_up/<string:account>/<string:password>/<string:name>')
 def sign_up(account, password, name):
 	try:
