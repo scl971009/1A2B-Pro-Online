@@ -35,6 +35,11 @@ const Navbar = () => {
               Game
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/profile">
+              Profile
+            </Link>
+          </li>
           <li className="nav-item dropdown">
             <Link
               className="nav-link dropdown-toggle"
