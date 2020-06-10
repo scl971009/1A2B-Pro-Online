@@ -20,12 +20,33 @@ def sign_up(account, password, name):
 		result = db().add_new_user(account, password, name)
 	except:
 		result = -1
-	return {"result": result}
+	return {"result": result, "account": account, "name": name}
 
 @app.route('/get_login/<string:account>')
 def get_login(account):
 	result = db().get_password(account)
 	return {"password": result}
+
+@app.route('/get_score/<string:account>')
+def get_score(account):
+	result = db().get_score(account)
+	return result
+
+@app.route('/add_win/<string:account>')
+def add_win(account):
+	try:
+		result = db().add_win_and_update_score(account)
+	except:
+		result = -1
+	return {"result": result}
+
+@app.route('/add_lose/<string:account>')
+def add_lose(account):
+	try:
+		result = db().add_lose_and_update_score(account)
+	except:
+		result = -1
+	return {"result": result}
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
