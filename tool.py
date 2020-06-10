@@ -1,14 +1,5 @@
-import sys
-from datetime import datetime
-import os
 import pymysql
-import time
-import io
-import csv
-import pandas as pd
-import re
 import json
-import requests
 
 class control_db(object):
 	def __init__(self):

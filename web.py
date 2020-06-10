@@ -1,12 +1,8 @@
 from flask import Flask, flash, redirect, render_template, request, session
 import os
-from bson.json_util import dumps
 import json
 from werkzeug import serving
 import ssl
-import hashlib
-import subprocess
-import sys
 from tool import control_db as db
 
 context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
