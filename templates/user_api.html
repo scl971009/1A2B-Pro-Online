@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>1A2B Pro Online User API List</h1>
+<h2>Sign up</h2>
+<p>/sign_up/&lt;account&gt;/&lt;password&gt;/&lt;name&gt;</p>
+<p>status_code = data.result, account = data.account, name = data.name</p>
+<p>0 (success) / 1 (account not unique) / 2 (field(s) not all filled) / -1 (unknown error)</p>
+
+<br>
+
+<h2>Get Password</h2>
+<p>/get_login/&lt;account&gt;</p>
+<p>password = data.password</p>
+<p>(if account not existed, data.password == 0)</p>
+
+<br>
+
+<h2>Get Score / Win / Lose</h2>
+<p>/get_score/&lt;account&gt;</p>
+<p>score = data.score, win = data.win, lose = data.lose</p>
+<p>(if account not existed, data.score == data.win == data.lose == -1)</p>
+
+<br>
+
+<h2>Note that the logic of add win and add lose is</h2>
+<p>Enter game, add lose to both players.</p>
+<p>Game ended, add win to the winner.</p>
+
+<br>
+
+<h2>Add Win</h2>
+<p>/add_win/&lt;account&gt;</p>
+<p>status_code = data.result</p>
+<p>0 (success) / -1 (error)</p>
+
+<br>
+
+<h2>Add Lose</h2>
+<p>/add_lose/&lt;account&gt;</p>
+<p>status_code = data.result</p>
+<p>0 (success) / -1 (error)</p>
+
+</body>
+</html>

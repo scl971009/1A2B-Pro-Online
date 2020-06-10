@@ -23,7 +23,8 @@ class control_db(object):
 			self.mysql_qae.commit()
 			result = 0
 		except Exception as e:
-			if 'Duplicate' in e:
+			#print(e)
+			if 'Duplicate' in str(e):
 				result = 1
 			else:
 				result = -1
@@ -39,4 +40,54 @@ class control_db(object):
 			result = mysql_result[0]['password']
 		except:
 			result = 0
+		return result
+
+	@__db
+	def get_score(self, account):
+		sql = "SELECT score, win, lose FROM `user`.`profile` WHERE account = '" + account + "';"
+		self.mysql_qae_cursor.execute(sql)
+		mysql_result = self.mysql_qae_cursor.fetchall()
+		self.mysql_qae.commit()
+		try:
+			result = mysql_result[0]
+		except:
+			result = {"score": -1, "win": -1, "lose": -1}
+		return result
+
+	@__db
+	def add_win_and_update_score(self, account):
+		try:
+			sql = "UPDATE `user`.`profile` SET `score`=`score`+30, `win`=`win`+1, `lose`=`lose`-1 WHERE  `account`='" + account + "';"
+			self.mysql_qae_cursor.execute(sql)
+			mysql_result = self.mysql_qae_cursor.fetchall()
+			self.mysql_qae.commit()
+			result = 0
+		except Exception as e:
+			if 'range' in str(e):
+				sql = "UPDATE `user`.`profile` SET `score`=`score`+30, `win`=`win`+1, `lose`=0 WHERE  `account`='" + account + "';"
+				self.mysql_qae_cursor.execute(sql)
+				mysql_result = self.mysql_qae_cursor.fetchall()
+				self.mysql_qae.commit()
+				result = 0
+			else:
+				result = -1
+		return result
+
+	@__db
+	def add_lose_and_update_score(self, account):
+		try:
+			sql = "UPDATE `user`.`profile` SET `score`=`score`-10, `lose`=`lose`+1 WHERE  `account`='" + account + "';"
+			self.mysql_qae_cursor.execute(sql)
+			mysql_result = self.mysql_qae_cursor.fetchall()
+			self.mysql_qae.commit()
+			result = 0
+		except Exception as e:
+			if 'range' in str(e):
+				sql = "UPDATE `user`.`profile` SET `score`=0, `lose`=`lose`+1 WHERE  `account`='" + account + "';"
+				self.mysql_qae_cursor.execute(sql)
+				mysql_result = self.mysql_qae_cursor.fetchall()
+				self.mysql_qae.commit()
+				result = 0
+			else:
+				result = -1
 		return result
