@@ -10,12 +10,13 @@ class Login extends Component {
 
     handleSuccessfulAuth(data){
         //Redirection
-        this.props.history.push("/Home")
+        this.props.handleLogin(data);
+        this.props.history.push("/")
     
     }
     render() {
         return (
-            <div className="container">
+            <div className="container"> 
                 <h1 className="py-3">Login Page</h1>
                 <h1>Status: {this.props.loggedInStatus}</h1>
                 <Registration handleSuccessfulAuth={this.handleSuccessfulAuth}/>

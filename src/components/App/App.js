@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import { Route } from 'react-router-dom';
 import { Navbar } from '../../Navbar.js';
 import  Game   from '../Pages/Game.js';
@@ -15,12 +16,18 @@ class App extends Component {
 
     this.state={
       loggedInStatus: "NOT_LOGGED_IN",
-      user: {
+      user: {}
+    };
 
-      }
-    }
+    this.handleLogin = this.handleLogin.bind(this);
   }
 
+  handleLogin(data) {
+    this.setState({
+      loggedInStatus: "LOGGED_IN",
+      user: data
+    });
+  }
   render() {
     return (
       <div className="container">
@@ -36,7 +43,7 @@ class App extends Component {
           path="/login"
           exact
           render={props =>(
-            <Login { ... props} loggedInStatus={this.state.loggedInStatus} />
+            <Login { ... props} handleLogin={this.handleLogin} loggedInStatus={this.state.loggedInStatus} />
           )}
         />
         <Route path="/game" component={Game} />
