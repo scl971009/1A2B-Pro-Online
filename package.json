@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.19.2",
     "js-combinatorics": "^0.5.4",
     "lodash": "^4.17.11",
     "react": "^16.7.0",
@@ -22,7 +23,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "https://127.0.0.1:5000",
+  "proxy": "https://140.112.30.46:7878",
   "browserslist": [
     ">0.2%",
     "not dead",
