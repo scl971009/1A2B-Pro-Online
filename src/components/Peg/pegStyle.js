@@ -26,21 +26,25 @@ export default styled.div`
   margin: ${props => (props.clickable && '1px 2px')};
   background: ${props => {
     switch(props.colour) {
-      case 'red':
+      case '1':
         return props.type === 'small-circle' ? 'radial-gradient(circle at 3px 3px, #f00, #652222)' : 'radial-gradient(circle at 8px 6px, #f00, #632222)'
-      case 'green':
+      case '2':
         return 'radial-gradient(circle at 8px 6px, #0f0, #083e08)'
-      case 'blue':
+      case '3':
         return 'radial-gradient(circle at 8px 6px, #00f, #040425)'
-      case 'yellow':
+      case '4':
         return 'radial-gradient(circle at 8px 6px, #ff0, #42420f)'
-      case 'brown':
+      case '5':
         return 'radial-gradient(circle at 8px 6px, #a03d3d, #2b0505)'
-      case 'orange':
+      case '6':
         return 'radial-gradient(circle at 8px 6px, #ffa500, #48330f)'
-      case 'black':
-        return 'radial-gradient(circle at 8px 6px, #333, #000)'
-      case 'white':
+      case '7':
+        return 'radial-gradient(circle at 8px 6px, #FFDDAA, #FFAA33)'
+      case '8':
+        return 'radial-gradient(circle at 8px 6px, #AAFFEE , #33FFDD)'
+      case '9':
+        return 'radial-gradient(circle at 8px 6px, #CCBBFF, #7744FF)'
+      case '0':
         return props.type === 'small-circle' ? 'radial-gradient(circle at 3px 1px, #fff, #868686)' : 'radial-gradient(circle at 8px 6px, #fff, #868686)'
       default:
         return 'radial-gradient(circle at 8px 6px, #f00, #632222)';
