@@ -17,15 +17,16 @@ def show_user_api():
 @app.route('/sign_up/<string:account>/<string:password>/<string:name>')
 def sign_up(account, password, name):
 	try:
-		result = db().add_new_user(account, password, name)
+		result, e = db().add_new_user(account, password, name)
 	except:
 		result = -1
-	return {"result": result, "account": account, "name": name}
+		e = "Unknown error"
+	return {"result": result, "account": account, "name": name, "exception": e}
 
 @app.route('/get_login/<string:account>')
 def get_login(account):
-	result = db().get_password(account)
-	return {"password": result}
+	result, e = db().get_password(account)
+	return {"password": result, "exception": e}
 
 @app.route('/get_score/<string:account>')
 def get_score(account):
@@ -35,18 +36,30 @@ def get_score(account):
 @app.route('/add_win/<string:account>')
 def add_win(account):
 	try:
-		result = db().add_win_and_update_score(account)
+		result, e = db().add_win_and_update_score(account)
 	except:
 		result = -1
-	return {"result": result}
+		e = "Unknown error"
+	return {"result": result, "exception": e}
 
 @app.route('/add_lose/<string:account>')
 def add_lose(account):
 	try:
-		result = db().add_lose_and_update_score(account)
+		result, e = db().add_lose_and_update_score(account)
 	except:
 		result = -1
-	return {"result": result}
+		e = "Unknown error"
+	return {"result": result, "exception": e}
+
+@app.route('/online/<string:account>/<path:rival>')
+def determine_rival(account, rival):
+	rival_list = []
+	if '/' in rival:
+		rival_list= rival.split('/')
+	else:
+		rival_list.append(rival)
+	result, e = db().determine_rival(account, rival_list)
+	return {"rival": result, "exception": e}
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
