@@ -109,12 +109,13 @@ class control_db(object):
 		rival_string = rival_string[2:]
 		try:
 			sql = "SELECT account FROM `user`.`profile` WHERE \
-			CASE WHEN (SELECT score FROM `user`.`profile` WHERE account = '" + account + "') > score \
+			(CASE WHEN (SELECT score FROM `user`.`profile` WHERE account = '" + account + "') > score \
 			THEN (SELECT score FROM `user`.`profile` WHERE account = '" + account + "')-score \
 			ELSE score-(SELECT score FROM `user`.`profile` WHERE account = '" + account + "') \
 			END = (SELECT MIN(CASE WHEN (SELECT score FROM `user`.`profile` WHERE account = '" + account + "') > score \
 			THEN (SELECT score FROM `user`.`profile` WHERE account = '" + account + "')-score \
-			ELSE score-(SELECT score FROM `user`.`profile` WHERE account = '" + account + "') END) FROM `user`.`profile` WHERE account IN (" + rival_string + "));"
+			ELSE score-(SELECT score FROM `user`.`profile` WHERE account = '" + account + "') END) FROM `user`.`profile` WHERE account IN (" + rival_string + ")))\
+			AND account IN (" + rival_string + ");"
 			self.mysql_qae_cursor.execute(sql)
 			mysql_result = self.mysql_qae_cursor.fetchall()
 			self.mysql_qae.commit()
