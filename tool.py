@@ -14,7 +14,7 @@ class control_db(object):
 
 	@__db
 	def add_new_user(self, account, password, name):
-		e = None
+		err = None
 		if account == "" or password == "" or name == "":
 			return 2
 		try:
@@ -24,16 +24,16 @@ class control_db(object):
 			self.mysql_qae.commit()
 			result = 0
 		except Exception as e:
-			e = str(e)
+			err = str(e)
 			if 'Duplicate' in e:
 				result = 1
 			else:
 				result = -1
-		return result, e
+		return result, err
 
 	@__db
 	def get_password(self, account):
-		e = None
+		err = None
 		sql = "SELECT password FROM `user`.`profile` WHERE account = '" + account + "';"
 		self.mysql_qae_cursor.execute(sql)
 		mysql_result = self.mysql_qae_cursor.fetchall()
@@ -41,9 +41,9 @@ class control_db(object):
 		try:
 			result = mysql_result[0]['password']
 		except Exception as e:
-			e = str(e)
+			err = str(e)
 			result = 0
-		return result, e
+		return result, err
 
 	@__db
 	def get_score(self, account):
@@ -98,4 +98,28 @@ class control_db(object):
 			else:
 				err = str(e)
 				result = -1
+		return result, err
+
+	@__db
+	def determine_rival(self, account, rival):
+		err = None
+		rival_string = ""
+		for rival_account in rival:
+			rival_string += ", '" + rival_account + "'"
+		rival_string = rival_string[2:]
+		try:
+			sql = "SELECT account FROM `user`.`profile` WHERE \
+			CASE WHEN (SELECT score FROM `user`.`profile` WHERE account = '" + account + "') > score \
+			THEN (SELECT score FROM `user`.`profile` WHERE account = '" + account + "')-score \
+			ELSE score-(SELECT score FROM `user`.`profile` WHERE account = '" + account + "') \
+			END = (SELECT MIN(CASE WHEN (SELECT score FROM `user`.`profile` WHERE account = '" + account + "') > score \
+			THEN (SELECT score FROM `user`.`profile` WHERE account = '" + account + "')-score \
+			ELSE score-(SELECT score FROM `user`.`profile` WHERE account = '" + account + "') END) FROM `user`.`profile` WHERE account IN (" + rival_string + "));"
+			self.mysql_qae_cursor.execute(sql)
+			mysql_result = self.mysql_qae_cursor.fetchall()
+			self.mysql_qae.commit()
+			result = mysql_result[0]['account']
+		except Exception as e:
+			err = str(e)
+			result = 0
 		return result, err

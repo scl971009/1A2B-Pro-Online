@@ -53,9 +53,13 @@ def add_lose(account):
 
 @app.route('/online/<string:account>/<path:rival>')
 def determine_rival(account, rival):
-	rival = rival.split('/')
-	print(rival)
-	return {"result": 1}
+	rival_list = []
+	if '/' in rival:
+		rival_list= rival.split('/')
+	else:
+		rival_list.append(rival)
+	result, e = db().determine_rival(account, rival_list)
+	return {"rival": result, "exception": e}
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
