@@ -9,7 +9,7 @@ class Home extends Component {
     return (
       <div className="container">
         <h1 className="py-3">Home</h1>
-        <h1>Status: {this.props.loggedInStatus}</h1>
+        <h1>WELCOME</h1>
       </div>
     );
   }

@@ -1,28 +1,44 @@
 import React, {Component} from "react";
-import axios from 'axios';
+import { register } from './UserFunctions'
 export default class Registration extends Component {
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
 
         this.state = {
-            email: "",
+            account: "",
             password: "",
             password_confirmation: "",
             name: "",
             registrationErrors: ""
         }
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this)
     }
-    handleChange(event){
+    onChange(event){
         this.setState({
             [event.target.name]: event.target.value
         });
 
     }
-    handleSubmit(event){
-        const { email, password, password_confirmation, name} = this.state;
+    onSubmit(event){
+        const { account, password, password_confirmation, name} = this.state;
+        event.preventDefault();
+        const newUser = {
+            account: account,
+            password: password,
+            password_confirmation: password_confirmation,
+            name: name
+        }
+
+        register(newUser).then(
+            res =>{
+                if (res === 0)
+                    this.props.history.push('/login')
+            }
+        )
+        /*
+        const { account, password, password_confirmation, name} = this.state;
 
         if (password !== password_confirmation){
             alert("Fuck you");
@@ -48,51 +64,73 @@ export default class Registration extends Component {
                 console.log("registration error", error);
             });
         }
-        event.preventDefault();
+
+        */
+        
     }
     render(){
-        return (<div>
-            <form onSubmit = {this.handleSubmit}>
-                <input 
-                    type="email" 
-                    name="email" 
-                    placeholder="Email" 
-                    value={this.state.email} 
-                    onChange={this.handleChange} 
-                    required 
-                />
-
-                <input 
-                    type="password" 
-                    name="password" 
-                    placeholder="password" 
-                    value={this.state.password} 
-                    onChange={this.handleChange} 
-                    required 
-                />
-
-                <input 
-                    type="password" 
-                    name="password_confirmation" 
-                    placeholder="password_confirmation" 
-                    value={this.state.password_confirmation} 
-                    onChange={this.handleChange} 
-                    required 
-                />
-
-                <input 
-                    type="name" 
-                    name="name" 
-                    placeholder="name" 
-                    value={this.state.name} 
-                    onChange={this.handleChange} 
-                    required 
-                />
-                <button type="submit">Register</button>
-
-            </form>
-
-        </div>
+        return (
+            <div className="container">
+            <div className="row">
+              <div className="col-md-6 mt-5 mx-auto">
+                <form noValidate onSubmit={this.onSubmit}>
+                  <h1 className="h3 mb-3 font-weight-normal">Register</h1>
+                  <div className="form-group">
+                    <label htmlFor="email">Account</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      name="account"
+                      placeholder="Enter your email address"
+                      value={this.state.account}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="password"
+                      placeholder="Enter your password"
+                      value={this.state.password}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="password">Password Comfirmation</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      name="password_confirmation"
+                      placeholder="Comfirm your password"
+                      value={this.state.password_confirmation}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="name">Name</label>
+                    <input
+                      type="name"
+                      className="form-control"
+                      name="name"
+                      placeholder="Name"
+                      value={this.state.name}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="btn btn-lg btn-primary btn-block"
+                  >
+                    Register!
+                  </button>
+                </form>
+              </div>
+            </div>
+            </div>
+            
+            
         )
     }
 }
