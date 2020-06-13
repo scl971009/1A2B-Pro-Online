@@ -110,4 +110,8 @@ class Home extends Component {
   
 }
 
+<<<<<<< HEAD
 export default withRouter(Home)
+=======
+export { Navbar };
+>>>>>>> 44b1cae1bb6091e2643b1714d24882bcecfd9a30

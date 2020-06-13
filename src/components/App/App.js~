@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import { Route } from 'react-router-dom';
-import { Navbar } from '../../Navbar.js';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import  Navbar  from '../../Navbar.js';
 import  Game   from '../Pages/Game.js';
 import  Home   from '../Pages/Home.js';
 import  Login   from '../Pages/Login.js';
-import	Register	from '../Pages/Registration.js';
 
 import './App.css';
+import Registration from '../Pages/Registration.js';
  
 class App extends Component {
   constructor(){
@@ -46,6 +46,7 @@ class App extends Component {
 */
   render() {
     return (
+      <Router>
       <div className="container">
         <Navbar />
         <Route 
@@ -69,7 +70,9 @@ class App extends Component {
           component={Login}
         />
         <Route path="/game" component={Game} />
+        <Route path="/registration" component={Registration} />
       </div>
+      </Router>
     );
   }
 }
