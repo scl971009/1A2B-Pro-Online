@@ -10,7 +10,7 @@ class Home extends Component {
     e.preventDefault()
     localStorage.removeItem('usertoken')
     console.log(this.props)
-    this.props.history.push('/')
+    this.props.history.push('/login')
   }
   render(){
     const loginRegLink = (
