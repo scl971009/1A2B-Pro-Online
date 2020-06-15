@@ -33,19 +33,37 @@ def get_score(account):
 	result = db().get_score(account)
 	return result
 
-@app.route('/add_win/<string:account>')
-def add_win(account):
+@app.route('/pvp/add_win/<string:account>')
+def add_win_p(account):
 	try:
-		result, e = db().add_win_and_update_score(account)
+		result, e = db().add_win_and_update_score_p(account)
 	except:
 		result = -1
 		e = "Unknown error"
 	return {"result": result, "exception": e}
 
-@app.route('/add_lose/<string:account>')
-def add_lose(account):
+@app.route('/pvp/add_lose/<string:account>')
+def add_lose_p(account):
 	try:
-		result, e = db().add_lose_and_update_score(account)
+		result, e = db().add_lose_and_update_score_p(account)
+	except:
+		result = -1
+		e = "Unknown error"
+	return {"result": result, "exception": e}
+
+@app.route('/pve/add_win/<string:account>')
+def add_win_e(account):
+	try:
+		result, e = db().add_win_and_update_score_e(account)
+	except:
+		result = -1
+		e = "Unknown error"
+	return {"result": result, "exception": e}
+
+@app.route('/pve/add_lose/<string:account>')
+def add_lose_e(account):
+	try:
+		result, e = db().add_lose_and_update_score_e(account)
 	except:
 		result = -1
 		e = "Unknown error"
