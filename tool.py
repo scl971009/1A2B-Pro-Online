@@ -46,21 +46,22 @@ class control_db(object):
 	@__db
 	def get_score(self, account):
 		err = "Success"
-		sql = "SELECT score, win_p, lose_p, win_e, lose_e FROM `user`.`profile` WHERE account = '" + account + "';"
+		sql = "SELECT name, score, win_p, lose_p, win_e, lose_e FROM `user`.`profile` WHERE account = '" + account + "';"
 		self.mysql_cursor.execute(sql)
 		mysql_result = self.mysql_cursor.fetchall()
 		self.mysql.commit()
 		try:
 			result = mysql_result[0]
+			name = result["name"]
 			score = result["score"]
 			win_p = result["win_p"]
 			lose_p = result["lose_p"]
 			win_e = result["win_e"]
 			lose_e = result["lose_e"]
-			result = result = {"score": score, "win_p": win_p, "lose_p": lose_p, "win_e": win_e, "lose_e": lose_e, "exception": err}
+			result = result = {"name": name, "score": score, "win_p": win_p, "lose_p": lose_p, "win_e": win_e, "lose_e": lose_e, "exception": err}
 		except Exception as e:
 			err = str(e)
-			result = {"score": -1, "win_p": -1, "lose_p": -1, "win_e": -1, "lose_e": -1, "exception": err}
+			result = {"name": -1, "score": -1, "win_p": -1, "lose_p": -1, "win_e": -1, "lose_e": -1, "exception": err}
 		return result
 
 	@__db
