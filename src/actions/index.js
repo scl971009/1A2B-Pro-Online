@@ -32,12 +32,16 @@ export const checkRow = (originalGuess) => {
   let codeToCheck = [...code];
   const result = [];
 
+  let A = 0;
+  let B = 0;
+  const r = [];
   // check exact matches
   for (let i=0; i<BOARD_WIDTH; i+=1) {
     if (guess[i]===code[i]) {
       guess.splice(i,1, undefined);
       codeToCheck.splice(i,1, undefined);
       result[resultIndex] = 'red';
+      A+=1;
       resultIndex+=1;
     }
   }
@@ -50,12 +54,16 @@ export const checkRow = (originalGuess) => {
     if (indexInCode!==-1) {
       codeToCheck.splice(indexInCode,1);
       result[resultIndex] = 'white';
+      B+=1;
       resultIndex+=1;
     }
   }
+  r[0] = A
+  r[1] = B;
   return {
     type: 'CHECK_ROW',
     result: {
+      r,
       result,
       turn,
     },

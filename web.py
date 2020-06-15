@@ -1,5 +1,9 @@
 from flask import Flask, flash, redirect, render_template, request, session
 import os
+<<<<<<< HEAD
+=======
+#from bson.json_util import dumps
+>>>>>>> origin/b05902104
 import json
 from werkzeug import serving
 import ssl
@@ -63,4 +67,8 @@ def determine_rival(account, rival):
 
 if __name__ == '__main__':
     app.secret_key = os.urandom(12)
+<<<<<<< HEAD
     serving.run_simple("127.0.0.1", 5000, app, ssl_context=context, threaded=True)
+=======
+    serving.run_simple("127.0.0.1", 3456, app, ssl_context=context, threaded=True)
+>>>>>>> origin/b05902104

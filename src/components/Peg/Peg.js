@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PegStyle from './pegStyle';
+import PegNumber from './pegNumber';
 import { placePeg } from '../../actions';
 
 class Peg extends React.Component {
@@ -22,7 +23,7 @@ class Peg extends React.Component {
     } = this.props;
 
     const type = result ? 'small-circle' : 'circle';
-    return <PegStyle type={type} colour={colour} clickable={clickable} onClick={this.handlePegClick} />
+  return <PegStyle type={type} colour={colour} clickable={clickable} onClick={this.handlePegClick}><PegNumber>{colour}</PegNumber></PegStyle>
   }
 };
 

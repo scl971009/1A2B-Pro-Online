@@ -14,7 +14,7 @@ import { clearRow, newGame } from '../../actions';
 import { startPlaySelf } from '../../utils/selfPlayUtils';
 import './Game.css';
 
-class Game extends Component {
+class App extends Component {
   handleClearRowButtonClick = () => {
     const {
       clearRow,
@@ -41,13 +41,17 @@ class Game extends Component {
       gameEnded,
       showEndGameModal,
     } = this.props;
-
+    /*console.log(boardState)
+    console.log(results)
+    console.log(code)
+    console.log(turn)
+    console.log(gameEnded)*/
     const youLost = turn >= BOARD_HEIGHT &&
                     !_.isEqual(results[BOARD_HEIGHT-1], Array.apply(null , {length: BOARD_WIDTH}).map(()=>'red'));
     return (
       <div className="container">
         <div className="text-center body">
-          <HeadingStyle>Mastermind</HeadingStyle>
+          <HeadingStyle>1A2B Pro</HeadingStyle>
           <div className="board-container">
             <table className="board" data-intro="Try to guess the hidden pattern in under 10 tries" data-position="left">
               <tbody>
@@ -55,7 +59,7 @@ class Game extends Component {
                   <td>&nbsp;</td>
                   {code.map((peg, index) => (
                     <HoodCellStyle gameEnded={gameEnded} key={`code-${index}`}>
-                      {!gameEnded ? '?' : <Peg colour={peg} />}
+                      {!gameEnded ? ' ' : <Peg colour={peg} />}
                     </HoodCellStyle>
                   ))}
                   <td>&nbsp;</td>
@@ -127,13 +131,13 @@ class Game extends Component {
     );
   }
 }
-
 const mapStateToProps = (state /*, ownProps*/) => {
   return state;
 }
 
 const mapDispatchToProps = { clearRow, newGame };
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Game);
+)(App);
