@@ -10,7 +10,7 @@ class Home extends Component {
     e.preventDefault()
     localStorage.removeItem('usertoken')
     console.log(this.props)
-    this.props.history.push('/login')
+    this.props.history.push('/')
   }
   render(){
     const loginRegLink = (
@@ -110,4 +110,8 @@ class Home extends Component {
   
 }
 
+<<<<<<< HEAD
 export default withRouter(Home)
+=======
+export { Navbar };
+>>>>>>> 44b1cae1bb6091e2643b1714d24882bcecfd9a30
