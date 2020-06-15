@@ -10,7 +10,7 @@
 <h2>Sign up</h2>
 <p>/sign_up/&lt;account&gt;/&lt;password&gt;/&lt;name&gt;</p>
 <p>status_code = data.result, account = data.account, name = data.name</p>
-<p>0 (success) / 1 (account not unique) / 2 (field(s) not all filled) / -1 (unknown error)</p>
+<p>0 (success) / 1 (account not unique) / -1 (unknown error)</p>
 
 <br>
 
@@ -23,8 +23,8 @@
 
 <h2>Get Score / Win / Lose</h2>
 <p>/get_score/&lt;account&gt;</p>
-<p>score = data.score, win = data.win, lose = data.lose</p>
-<p>(if account not existed, data.score == data.win == data.lose == -1)</p>
+<p>score = data.score, win(PVP) = data.win_p, lose(PVP) = data.lose_p, win(PVE) = data.win_e, lose(PVE) = data.win_e</p>
+<p>(if account not existed, data.score == data.win_p == data.lose_p == data.win_e == data.lose_e == -1)</p>
 
 <br>
 
@@ -34,15 +34,29 @@
 
 <br>
 
-<h2>Add Win</h2>
-<p>/add_win/&lt;account&gt;</p>
+<h2>Add Win (PVP)</h2>
+<p>/pvp/add_win/&lt;account&gt;</p>
 <p>status_code = data.result</p>
 <p>0 (success) / -1 (error)</p>
 
 <br>
 
-<h2>Add Lose</h2>
-<p>/add_lose/&lt;account&gt;</p>
+<h2>Add Lose (PVP)</h2>
+<p>/pvp/add_lose/&lt;account&gt;</p>
+<p>status_code = data.result</p>
+<p>0 (success) / -1 (error)</p>
+
+<br>
+
+<h2>Add Win (PVE)</h2>
+<p>/pve/add_win/&lt;account&gt;</p>
+<p>status_code = data.result</p>
+<p>0 (success) / -1 (error)</p>
+
+<br>
+
+<h2>Add Lose (PVE)</h2>
+<p>/pve/add_lose/&lt;account&gt;</p>
 <p>status_code = data.result</p>
 <p>0 (success) / -1 (error)</p>
 
