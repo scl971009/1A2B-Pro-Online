@@ -5,8 +5,10 @@ import CodeReducer from './reducer-code';
 import ResultsReducer from './reducer-results';
 import EndGameReducer from './reducer-end-game';
 import ShowEndGameModalReducer from './reducer-show-end-game-modal';
+import userReducer from './reducer-user';
 
 const rootReducer = combineReducers({
+  userreducer: userReducer,
   boardState: BoardStateReducer,
   turn: TurnReducer,
   code: CodeReducer,
