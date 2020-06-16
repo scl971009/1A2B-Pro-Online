@@ -22,27 +22,20 @@ class Home extends Component {
   componentDidMount() {
 
     this.socket = io(baseAPI, {secret:true});
-    console.log('gameID = ', this.state.gameId)
 
     this.socket.on('connect', () => {
-      console.log('CONNECT')
-      if (this.state.gameId === null) {  /* TODO */
-        this.socket.emit('connect_event', {data: 'connected!', rand: Math.floor(Math.random() * 800000) + 100000});
-      }
+      console.log('CONNECT');
+      this.socket.emit('connection', {'data': 'Hello Server'});
     });
 
     this.socket.on('server_response', (data) => {
-      this.setState({
-        gameId: data.gameid,
-      });
-
-      console.log('[Socket on] recv from server: ', this.state.gameId);
+      console.log('[Socket on] recv from server: ', data['data']);
     });
 
-    // // TODO: this is a bug
-    this.socket.on('CREATE_GAME', (game) => {
+    // TODO: this is a bug
+    this.socket.on('START_GAME', (game) => {
       this.receiveGame(game);
-      console.log('[Socket] CREATE_GAME');
+      console.log('[Socket] START_GAME');
     });
   }
 
@@ -59,11 +52,13 @@ class Home extends Component {
     };
 
     this.socket.emit('CREATE_GAME', data);
+
     this.setState({ waiting: true }, () => {
       setTimeout(() => {
         this.socket.on('RECEIVE_GAME', (game) => {
-          this.receiveGame(game);
           console.log('[Socket] RECEIVE_GAME');
+          console.log(game);
+          this.receiveGame(game);
         });
       }, 500);
       this.stopWaiting = setTimeout(() => {
@@ -129,4 +124,15 @@ class Home extends Component {
   }
 }
 
-export default Home;
+const mapStateToProps = state => ({
+  user: state.userreducer.user,
+});
+
+const mapDispatchToProps = dispatch => ({
+  addGame: (game) => {
+    const action = { type: 'ADD_GAME', game };
+    dispatch(action);
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
