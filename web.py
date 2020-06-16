@@ -6,8 +6,10 @@ import ssl
 from tool import control_db as db
 from flask_socketio  import SocketIO, emit
 
-context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-context.load_cert_chain("server.crt", "server.key")
+import random
+
+# context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
+# context.load_cert_chain("server.crt", "server.key")
 
 app = Flask(__name__)
 #app.secret_key = os.urandom(12)
@@ -18,14 +20,17 @@ socketio = SocketIO(app, cors_allowed_origins='*')
 def show_user_api():
     return render_template('user_api.html')
 
-@socketio.on('connect_event')
+@socketio.on('connection')
 def connected_msg(msg):
     print(msg['data'])
-    emit('server_response', {'gameid': msg['rand']})
+    emit('server_response', {'data': 'Connected!'})
 
 @socketio.on('CREATE_GAME')
-def connected_msg(msg):
-    print('[DEBUG] recv CREATE_GAME')
+def game_recv(game):
+    print('[DEBUG] CREATE_GAME')
+    print(game)
+    game['id'] = random.randint(1000000, 9999999)
+    emit('RECEIVE_GAME', game);
 
 @app.route('/sign_up/<string:account>/<string:password>/<string:name>')
 def sign_up(account, password, name):
