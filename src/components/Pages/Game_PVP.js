@@ -44,7 +44,11 @@ class PVP extends Component {
         const userId = localStorage.useracount;
         console.log(userId);
         
-        // this.socket.emit('ROOM', { room, userId });
+        this.socket.emit('ROOM', { room, userId });
+      });
+
+      this.socket.on('RECEIVE_ID', (userId) => {
+        console.log('RECEIVED AN ID', userId);
       });
 
       /*
