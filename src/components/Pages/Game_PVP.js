@@ -14,7 +14,7 @@ import { clearRow, newGame } from '../../actions';
 import { startPlaySelf } from '../../utils/selfPlayUtils';
 import './Game.css';
 
-class PVE extends Component {
+class PVP extends Component {
   handleClearRowButtonClick = () => {
     const {
       clearRow,
@@ -141,5 +141,4 @@ const mapDispatchToProps = { clearRow, newGame };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PVE);
-
+)(PVP);
