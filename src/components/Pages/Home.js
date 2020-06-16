@@ -50,8 +50,9 @@ class Home extends Component {
     const { user } = this.props;
     const data = {
       userId: localStorage.useracount,
+      username: Math.floor(Math.random() * 10000),
     };
-    console.log(data.userId);
+    console.log(data.userId)
     this.socket.emit('CREATE_GAME', data);
     this.setState({ waiting: true }, () => {
       setTimeout(() => {
