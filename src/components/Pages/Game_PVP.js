@@ -14,7 +14,65 @@ import { clearRow, newGame } from '../../actions';
 import { startPlaySelf } from '../../utils/selfPlayUtils';
 import './Game.css';
 
+import data from '../Assets/data';
+import io from 'socket.io-client';
+
+const { baseAPI } = data;
+
 class PVP extends Component {
+
+  componentDidMount() {
+    const query = this.props.location.search;
+    const gameId = window.location.href.split('/')[4].split('?')[0];
+    const whiteId = query.split('=')[1];
+    console.log(whiteId);
+    console.log(gameId);
+    this.setMutliPlayer(gameId, whiteId);
+  }
+
+  componentWillUnmount() {
+    this.socket.close();
+  }
+
+  setMutliPlayer = (gameId, whiteId) => {
+    this.setState({ gameId }, () => {
+      this.socket = io(baseAPI);
+
+      const room = gameId;
+
+      this.socket.on('connect', () => {
+        const userId = localStorage.useracount;
+        console.log(userId);
+        
+        // this.socket.emit('ROOM', { room, userId });
+      });
+
+      /*
+      this.socket.on('RECEIVE_ID', (userId) => {
+        console.log('RECEIVED AN ID', userId);
+      });
+
+      
+      // assign user ids to players
+      this.socket.on('RECEIVE_IDS', ({ whiteId, blackId }) => {
+        const { players } = this.state;
+        const blackPlayer = players.find(p => p.color === 'black');
+        const whitePlayer = players.find(p => p.color === 'white');
+        blackPlayer.id = blackId;
+        whitePlayer.id = Number(whiteId);
+        this.setState({ players });
+      });
+  
+      if (this.props.user.id !== Number(whiteId)) {
+        this.socket.emit('SET_IDS', { whiteId, blackId: this.props.user.id });
+        // flipboard
+        const squares = generateSquares(true);
+        this.setState({ squares });
+      }
+      */
+    });
+  }
+
   handleClearRowButtonClick = () => {
     const {
       clearRow,

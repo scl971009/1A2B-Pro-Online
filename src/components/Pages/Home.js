@@ -49,10 +49,9 @@ class Home extends Component {
   createGame = () => {
     const { user } = this.props;
     const data = {
-      userId: Math.floor(Math.random() * 10000),
-      username: Math.floor(Math.random() * 10000),
+      userId: localStorage.useracount,
     };
-    
+    console.log(data.userId);
     this.socket.emit('CREATE_GAME', data);
     this.setState({ waiting: true }, () => {
       setTimeout(() => {
@@ -107,7 +106,7 @@ class Home extends Component {
     const { user } = this.props;
 
     const redirect = (gameId) ?
-      <Redirect to={`/game/${gameId}?start_id=${opponentId}`} />
+      <Redirect to={`/game_pvp/${gameId}?start_id=${opponentId}`} />
       :
       null;
 
