@@ -34,8 +34,10 @@ class Home extends Component {
 
     // TODO: this is a bug
     this.socket.on('START_GAME', (game) => {
-      this.receiveGame(game);
+      // this.receiveGame(game);
       console.log('[Socket] START_GAME');
+      var storage=window.localStorage;
+      console.log(storage);
     });
   }
 
@@ -52,34 +54,18 @@ class Home extends Component {
     };
 
     this.socket.emit('CREATE_GAME', data);
-
-    this.setState({ waiting: true }, () => {
-      setTimeout(() => {
-        this.socket.on('RECEIVE_GAME', (game) => {
-          console.log('[Socket] RECEIVE_GAME');
-          console.log(game);
-          this.receiveGame(game);
-        });
-      }, 500);
-      this.stopWaiting = setTimeout(() => {
-        this.socket.removeListener('RECEIVE_GAME');
-        this.setState({
-          error: 'Could not find an opponent at this time',
-          waiting: false,
-        });
-        setTimeout(() => {
-          this.setState({ error: null });
-        }, 2000);
-      }, 10000);
+    this.socket.on('RECEIVE_GAME', (game) => {
+      console.log('[Socket] RECEIVE_GAME');
+      this.receiveGame(game);
     });
   }
 
   receiveGame = (game) => {
-    clearTimeout(this.stopWaiting);
-    this.setState({ waiting: false }, () => {
-      this.socket.removeListener('RECEIVE_GAME');
-      this.socket.emit('JOIN_GAME', game);
-    });
+    
+    console.log(game)
+    this.socket.removeListener('RECEIVE_GAME');
+    this.socket.emit('JOIN_GAME', game);
+
     this.setState({
       gameId: game.id,
       whiteId: game.userId,
@@ -110,6 +96,7 @@ class Home extends Component {
 
     return (
       <div className="container">
+        {redirect}
         <h1 className="py-3">Home</h1>
         <h1>WELCOME</h1>
         <button
