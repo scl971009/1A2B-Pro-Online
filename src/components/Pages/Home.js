@@ -34,10 +34,10 @@ class Home extends Component {
 
     // TODO: this is a bug
     this.socket.on('START_GAME', (game) => {
-      // this.receiveGame(game);
+      console.log(game);
       console.log('[Socket] START_GAME');
-      var storage=window.localStorage;
-      console.log(storage);
+      this.receiveGame(game);
+      
     });
   }
 
@@ -49,27 +49,50 @@ class Home extends Component {
   createGame = () => {
     const { user } = this.props;
     const data = {
-      userId: 'f4t',
-      username: 'fat',
+      userId: Math.floor(Math.random() * 10000),
+      username: Math.floor(Math.random() * 10000),
     };
-
+    
     this.socket.emit('CREATE_GAME', data);
+    this.setState({ waiting: true }, () => {
+      setTimeout(() => {
+        console.log('In timeout');
+        this.socket.on('RECEIVE_GAME', (game) => {
+          this.receiveGame(game);
+        });
+      }, 1000);
+      this.stopWaiting = setTimeout(() => {
+        this.socket.removeListener('RECEIVE_GAME');
+        this.setState({
+          error: 'Could not find an opponent at this time',
+          waiting: false,
+        });
+        setTimeout(() => {
+          this.setState({ error: null });
+        }, 2000);
+      }, 10000);
+    });
+
+    /*
     this.socket.on('RECEIVE_GAME', (game) => {
       console.log('[Socket] RECEIVE_GAME');
       this.receiveGame(game);
     });
+    */
   }
 
   receiveGame = (game) => {
-    
+    clearTimeout(this.stopWaiting);
     console.log(game)
     this.socket.removeListener('RECEIVE_GAME');
     this.socket.emit('JOIN_GAME', game);
 
     this.setState({
       gameId: game.id,
-      whiteId: game.userId,
+      opponentId: game.userId,
+      waiting: true,
     });
+
   }
 
   render() {
@@ -83,7 +106,7 @@ class Home extends Component {
 
     const { user } = this.props;
 
-    const redirect = gameId ?
+    const redirect = (gameId) ?
       <Redirect to={`/game/${gameId}?start_id=${opponentId}`} />
       :
       null;

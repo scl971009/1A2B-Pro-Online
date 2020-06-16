@@ -30,11 +30,11 @@ def game_recv(game):
     print('[DEBUG] GAME_RECEIVE')
     game['id'] = random.randint(1000000, 9999999)
     print(game)
-    emit('RECEIVE_GAME', game);
+    emit('RECEIVE_GAME', game, broadcast=True);
 
 @socketio.on('JOIN_GAME')
 def join_game(game):
-    emit('START_GAME', game);
+    emit('START_GAME', game, broadcast=True);
 
 @app.route('/sign_up/<string:account>/<string:password>/<string:name>')
 def sign_up(account, password, name):
