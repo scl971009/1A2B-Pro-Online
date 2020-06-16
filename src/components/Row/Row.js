@@ -22,7 +22,7 @@ class Row extends Component {
   }
 
   hanldeRowCheckClick = () => {
-    console.log(this.props);
+    console.log(this.props.code);
     const {
       incrementTurn,
       endGame,
@@ -31,13 +31,6 @@ class Row extends Component {
       code,
       turn,
     } = this.props;
-    /*
-    console.log(incrementTurn)
-    console.log(endGame)
-    console.log(checkRow)
-    console.log(pegs)
-    console.log(code)
-    console.log(turn)*/
     const result = checkRow(pegs).result.result;
     const r = checkRow(pegs).result.r;
     if(

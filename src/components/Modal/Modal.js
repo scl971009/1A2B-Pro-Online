@@ -14,12 +14,21 @@ class Modal extends React.Component {
   render() {
     const {
       show = false,
+      win_or_loss,
       title,
       content,
+      useracount,
     } = this.props;
 
     if (!show) return null;
-
+    if(win_or_loss){
+      fetch('/pvp/add_lose/'+String(useracount)).then(res => res.json()).then(data =>{
+      });
+    }
+    else{
+      fetch('/pvp/add_win/'+String(useracount)).then(res => res.json()).then(data =>{
+      });
+    }
     return (
       <ModalWrapperStyle>
         <CloseButtonStyle onClick={this.handleCloseClick}>
