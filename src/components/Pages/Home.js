@@ -4,11 +4,10 @@ class Home extends Component {
   render() {
     return (
       <div className="container">
-        <h1 className="py-3">Home</h1>
-        <h1>WELCOME</h1>
+        <h1>Welcome to 1A2B Pro</h1>
+        <img src="/static/images/welcome.jpg"></img>
       </div>
     );
   }
 }
-
 export default Home;

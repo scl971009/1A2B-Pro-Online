@@ -31,6 +31,9 @@ class PVE extends Component {
   handlePlaySelfButtonClick = () => {
     startPlaySelf();
   }
+  componentWillUnmount(){
+    this.handleNewGameButtonClick()
+  }
   render() {
     const {
       boardState,
