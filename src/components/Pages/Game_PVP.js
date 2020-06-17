@@ -40,7 +40,7 @@ class PVP extends Component {
       gameEnded,
       showEndGameModal,
     } = this.props;
-    console.log(localStorage.useracount)
+    console.log(localStorage.useraccount)
     /*console.log(boardState)
     console.log(results)
     console.log(code)

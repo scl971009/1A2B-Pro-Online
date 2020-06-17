@@ -40,11 +40,11 @@ class PVE extends Component {
       gameEnded,
       showEndGameModal,
     } = this.props;
-    console.log(localStorage.useracount)
-    /*console.log(boardState)
+    /* console.log(localStorage.useracount)
+    console.log(boardState)
     console.log(results)
     console.log(code)
-    console.log(showEndGameModal)*/
+    console.log(showEndGameModal) */
     const youLost = turn >= BOARD_HEIGHT &&
                     !_.isEqual(results[BOARD_HEIGHT-1], Array.apply(null , {length: BOARD_WIDTH}).map(()=>'red'));
     return (
@@ -124,7 +124,7 @@ class PVE extends Component {
               <p>You did not win <span role="img" aria-label="thumbs up">😟</span></p> :
               <p>Congrats! You won in {turn + 1} turns <span role="img" aria-label="thumbs up">👍🏻</span></p>
             }
-            useracount = {localStorage.useracount}
+            useracount = {localStorage.useraccount}
           />
         </div>
         <FooterStyle>&copy; Dave Petrasovic</FooterStyle>

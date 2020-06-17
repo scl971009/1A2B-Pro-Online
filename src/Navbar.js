@@ -20,7 +20,7 @@ class Home extends Component {
   createGame = () => {
     const { user } = this.props;
     const data = {
-      userId: localStorage.useracount,
+      userId: localStorage.useraccount,
     };
     console.log({ user })
     console.log(data)
@@ -85,33 +85,28 @@ class Home extends Component {
             <Link to="/profile" className="nav-link">
               User
             </Link>
-          </li>
-          <li className="nav-item">
-              <Link className="nav-link" to="/game">
-                Game
-              </Link>
-            </li>
-          <li className="nav-item">
-          <Link className="nav-link" to="/game_pvp">
-          Multiple player
-              </Link>
-          </li>
-          <li className="nav-item">
-            <a href="" onClick={this.logOut.bind(this)} className="nav-link">
-              Logout
-            </a>
-          </li>
-          <li className="nav-item">
-              <Link to="/game" className="nav-link" >
-                Game
-              </Link>
-          </li>
-  
+        </li>
+        <li className="nav-item">
+          <Link className="nav-link" to="/game">
+            Single player
+          </Link>
+        </li>
+        <li className="nav-item">
+            <Link to="/game_pvp" className="nav-link">
+              Multiple player
+            </Link>
+        </li>
+        <li className="nav-item">
+          <a href="" onClick={this.logOut.bind(this)} className="nav-link">
+            Logout
+          </a>
+        </li>
       </ul>
   
     )
   
     return (
+      
       <nav className="navbar navbar-expand-sm navbar-light bg-light">
   
   
@@ -135,34 +130,6 @@ class Home extends Component {
               </Link>
             </li>
             {localStorage.usertoken ? userLink : loginRegLink}
-            
-            <li className="nav-item dropdown">
-              <Link
-                className="nav-link dropdown-toggle"
-                to="/electronics"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                ???
-              </Link>
-              <div
-                className="dropdown-menu"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <Link className="dropdown-item" to="/electronics/mobile">
-                  Mobile Phone
-                </Link>
-                <Link className="dropdown-item" to="/electronics/desktop">
-                  Desktop PC
-                </Link>
-                <Link className="dropdown-item" to="/electronics/laptop">
-                  Laptop
-                </Link>
-              </div>
-            </li>
           </ul>
         </div>
       </nav>

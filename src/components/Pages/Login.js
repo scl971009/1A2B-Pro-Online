@@ -29,7 +29,7 @@ class Login extends Component {
             if(res){
                 console.log(this.props);
                 console.log(this.state);
-                localStorage.setItem('useracount',this.state.account);
+                localStorage.setItem('useraccount',this.state.account);
                 this.props.history.push('/');
             }
         })
