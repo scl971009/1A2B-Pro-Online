@@ -5,6 +5,8 @@ import  Navbar  from '../../Navbar.js';
 import  Game   from '../Pages/Game.js';
 import  Home   from '../Pages/Home.js';
 import  Login   from '../Pages/Login.js';
+import  Profile  from '../Pages/Profile.js';
+
 
 import './App.css';
 import Registration from '../Pages/Registration.js';
@@ -70,6 +72,7 @@ class App extends Component {
           component={Login}
         />
         <Route path="/game" component={Game} />
+        <Route path="/profile" component={Profile} />
         <Route path="/registration" component={Registration} />
       </div>
       </Router>

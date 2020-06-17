@@ -45,6 +45,11 @@ class Home extends Component {
               Logout
             </a>
           </li>
+          <li className="nav-item">
+              <Link to="/game" className="nav-link" >
+                Game
+              </Link>
+          </li>
   
       </ul>
   
