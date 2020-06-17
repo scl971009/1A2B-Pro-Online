@@ -1,26 +1,16 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import  Navbar  from '../../Navbar.js';
 import  Game   from '../Pages/Game.js';
 import  Home   from '../Pages/Home.js';
 import  Login   from '../Pages/Login.js';
+import Profile from '../Pages/Profile.js';
 
 import './App.css';
 import Registration from '../Pages/Registration.js';
  
 class App extends Component {
-  constructor(){
-    super();
-/*
-    this.state={
-      loggedInStatus: "NOT_LOGGED_IN",
-      user: {}
-    };
 
-    this.handleLogin = this.handleLogin.bind(this);
-*/
-  }
 /*
   checkLoginStatus(){
     axios.get("", {withCredentials: true})
@@ -69,8 +59,9 @@ class App extends Component {
           */
           component={Login}
         />
-        <Route path="/game" component={Game} />
-        <Route path="/registration" component={Registration} />
+        <Route exact path="/game" component={Game} />
+        <Route exact path="/registration" component={Registration} />
+        <Route exact path="/profile" component={Profile} />
       </div>
       </Router>
     );

@@ -35,7 +35,7 @@ export const login = user =>{
     .then(response =>{
         //Successful
         if(user.password === response.data.password){
-            localStorage.setItem('usertoken', response.config)
+            localStorage.setItem('usertoken', JSON.stringify(user))
             console.log('login success');
             return 1;
         }

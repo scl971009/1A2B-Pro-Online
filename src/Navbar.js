@@ -3,9 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 
 
 class Home extends Component {
-  constructor(){
-    super()
-  }
+
   logOut(e){
     e.preventDefault()
     localStorage.removeItem('usertoken')

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import  Navbar  from '../../Navbar.js';
 import  Game   from '../Pages/Game.js';
@@ -78,3 +77,4 @@ class App extends Component {
 }
 
 export default App;
+
