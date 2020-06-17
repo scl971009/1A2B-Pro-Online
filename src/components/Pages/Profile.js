@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Donut from 'react-svg-donuts';
-// import jwt_decode from 'jwt-decode'
 
 
 class Profile extends Component {
@@ -16,8 +15,9 @@ class Profile extends Component {
     };
   }
   
-  getpwd = () => {
-    fetch('/get_score/mi981027@gmail.com').then(res => res.json()).then(data => {
+  getpwd = (useraccount) => {
+
+    fetch('/get_score/'+String(useraccount)).then(res => res.json()).then(data => {
       console.log(data);
       this.setState({
 	      win_p: data.win_p,
@@ -31,16 +31,17 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    this.getpwd();
+    let useraccount = localStorage.useraccount ? localStorage.useraccount:null;
+    if(useraccount){
+      this.getpwd(useraccount);
+    }
   }
       
-
   render() {
     const progress_p = 100 - this.state.win_p / (this.state.win_p + this.state.lose_p)*100;
     const progress_e = 100 - this.state.win_e / (this.state.win_e + this.state.lose_e)*100;
     const renderProgress_p = progress => <strong>{this.state.win_p}W-{this.state.lose_p}L</strong>;
     const renderProgress_e = progress => <strong>{this.state.win_e}W-{this.state.lose_e}L</strong>;
-    // const username = jwt_decode(localStorage.usertoken).account;
     return (
 
         <div>
