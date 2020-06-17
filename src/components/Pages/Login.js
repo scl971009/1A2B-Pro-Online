@@ -12,7 +12,6 @@ class Login extends Component {
         this.onChange = this.onChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
-
     onChange(e){
         this.setState({
             [e.target.name]: e.target.value
@@ -31,6 +30,8 @@ class Login extends Component {
                 console.log(this.props);
                 localStorage.setItem("useraccount", this.state.account)
                 this.props.history.push('/')
+                console.log(this.state);
+
             }
         })
     }

@@ -14,7 +14,7 @@ import { clearRow, newGame } from '../../actions';
 import { startPlaySelf } from '../../utils/selfPlayUtils';
 import './Game.css';
 
-class PVE extends Component {
+class PVP extends Component {
   handleClearRowButtonClick = () => {
     const {
       clearRow,
@@ -40,11 +40,11 @@ class PVE extends Component {
       gameEnded,
       showEndGameModal,
     } = this.props;
-    /* console.log(localStorage.useracount)
-    console.log(boardState)
+    console.log(localStorage.useraccount)
+    /*console.log(boardState)
     console.log(results)
     console.log(code)
-    console.log(showEndGameModal) */
+    console.log(showEndGameModal)*/
     const youLost = turn >= BOARD_HEIGHT &&
                     !_.isEqual(results[BOARD_HEIGHT-1], Array.apply(null , {length: BOARD_WIDTH}).map(()=>'red'));
     return (
@@ -124,7 +124,7 @@ class PVE extends Component {
               <p>You did not win <span role="img" aria-label="thumbs up">😟</span></p> :
               <p>Congrats! You won in {turn + 1} turns <span role="img" aria-label="thumbs up">👍🏻</span></p>
             }
-            useracount = {localStorage.useraccount}
+            useracount = {localStorage.useracount}
           />
         </div>
         <FooterStyle>&copy; Dave Petrasovic</FooterStyle>
@@ -141,5 +141,4 @@ const mapDispatchToProps = { clearRow, newGame };
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PVE);
-
+)(PVP);

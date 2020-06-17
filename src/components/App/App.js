@@ -3,10 +3,10 @@ import axios from 'axios'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import  Navbar  from '../../Navbar.js';
 import  Game   from '../Pages/Game.js';
+import  Game_PVP   from '../Pages/Game_PVP.js';
 import  Home   from '../Pages/Home.js';
 import  Login   from '../Pages/Login.js';
-import  Profile  from '../Pages/Profile.js';
-
+import  Profile   from '../Pages/Profile.js';
 
 import './App.css';
 import Registration from '../Pages/Registration.js';
@@ -62,6 +62,16 @@ class App extends Component {
           */
         />
         <Route 
+          path="/profile" 
+          exact 
+          component={Profile}
+          /*
+          render={props => (
+            <Home { ... props} loggedInStatus={this.state.loggedInStatus} />
+          )}
+          */
+        />
+        <Route 
           path="/login"
           exact
           /*
@@ -72,7 +82,7 @@ class App extends Component {
           component={Login}
         />
         <Route path="/game" component={Game} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/game_pvp" component={Game_PVP} />
         <Route path="/registration" component={Registration} />
       </div>
       </Router>

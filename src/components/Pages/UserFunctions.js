@@ -15,6 +15,7 @@ export const register = newUser => {
             //error
             else if (response.data.result === -1){
                 console.log("fuck you error");
+                console.log(response);
             }
             //duplicate
             else if (response.data.result === 1){
