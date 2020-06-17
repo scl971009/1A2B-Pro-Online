@@ -22,7 +22,7 @@ class Row extends Component {
   }
 
   hanldeRowCheckClick = () => {
-    console.log(this.props.code);
+    //console.log(this.props.code);
     const {
       incrementTurn,
       endGame,

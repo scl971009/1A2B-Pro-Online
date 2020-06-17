@@ -18,7 +18,7 @@ class Profile extends Component {
   getpwd = (useraccount) => {
 
     fetch('/get_score/'+String(useraccount)).then(res => res.json()).then(data => {
-      console.log(data);
+      //console.log(data);
       this.setState({
 	      win_p: data.win_p,
 	      lose_p: data.lose_p,
