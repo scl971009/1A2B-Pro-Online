@@ -4,7 +4,7 @@ import json
 from werkzeug import serving
 import ssl
 from tool import control_db as db
-from flask_socketio  import SocketIO, emit, send, join_room, leave_room
+from flask_socketio  import SocketIO, emit
 
 import random
 
@@ -35,15 +35,6 @@ def game_recv(game):
 @socketio.on('JOIN_GAME')
 def join_game(game):
     emit('START_GAME', game, broadcast=True);
-
-@socketio.on('ROOM')
-def room(data):
-    print('INCOMING ROOM', data['room'])
-    room = data['room']
-    user = data['userId']
-    join_room(room)
-    send('RECEIVE_ID', room=room)
-    print('USER %s JOINED ROOM %s' % (data['userId'], data['room']));
 
 @app.route('/sign_up/<string:account>/<string:password>/<string:name>')
 def sign_up(account, password, name):
@@ -113,4 +104,4 @@ def determine_rival(account, rival):
 if __name__ == '__main__':
 #    serving.run_simple("127.0.0.1", 5000, app, ssl_context=context, threaded=True)
 #    serving.run_simple("140.112.30.46", 7878, app, ssl_context=context, threaded=True)
-    socketio.run(app, debug=True, host='127.0.0.1', port=5000, certfile='server.crt', keyfile='server.key')
+    socketio.run(app, debug=True, host='127.0.0.1', port=6000, certfile='server.crt', keyfile='server.key')
