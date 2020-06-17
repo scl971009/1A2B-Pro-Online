@@ -1,9 +1,7 @@
 import React from 'react';
-import Peg from '../Peg';
 
 const Results = (props) => {
   const {
-    index,
     rowResults,
   } = props;
   const jsxPegs = [];
@@ -12,17 +10,17 @@ const Results = (props) => {
   let B = 0;
   let empty = 0;
   for (let i=0; i<rowResults.length; i+=1) {
-    if(rowResults[i]=='white'){
+    if(rowResults[i]==='white'){
       B+=1;
     }
-    if(rowResults[i]=='red'){
+    if(rowResults[i]==='red'){
       A+=1;
     }
     else{
       empty+=1;
     }
   }
-  if(empty != 4){
+  if(empty !== 4){
     jsxPegs.push((
       String(A)+'A'+String(B)+'B'
       ));

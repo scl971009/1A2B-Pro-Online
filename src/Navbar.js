@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
-import { Link, withRouter ,Redirect} from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 class Home extends Component {
-  constructor(){
-    super()
-  }
   state = {
     error: null,
     gameId: null,
@@ -55,15 +52,15 @@ class Home extends Component {
     });
   }
   render(){
-    const {
-      error,
-      gameId,
-      waiting,
-      whiteId,
-    } = this.state;
-    const redirect = gameId ? <Redirect to={`/game/${gameId}`} /> : null;
-    const buttonText = waiting ? 'Looking for Opponent' : 'Find Opponent';
-    const errorMessage = error ?(<p style={{ color: 'red' }}>{error}</p>) : null;
+    //const {
+      //error,
+      //gameId,
+      //waiting,
+      //whiteId,
+    //} = this.state;
+    //const redirect = gameId ? <Redirect to={`/game/${gameId}`} /> : null;
+    //const buttonText = waiting ? 'Looking for Opponent' : 'Find Opponent';
+    //const errorMessage = error ?(<p style={{ color: 'red' }}>{error}</p>) : null;
     const loginRegLink = (
       <ul className="navbar-nav">
       <li className="nav-item">
@@ -97,7 +94,7 @@ class Home extends Component {
             </Link>
         </li>
         <li className="nav-item">
-          <a href="" onClick={this.logOut.bind(this)} className="nav-link">
+          <a href="/" onClick={this.logOut.bind(this)} className="nav-link">
             Logout
           </a>
         </li>

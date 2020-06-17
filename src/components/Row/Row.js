@@ -32,7 +32,6 @@ class Row extends Component {
       turn,
     } = this.props;
     const result = checkRow(pegs).result.result;
-    const r = checkRow(pegs).result.r;
     if(
       result.length===code.length &&
       'red' === result.reduce((previous, current) => (previous===current) ? previous : NaN)
